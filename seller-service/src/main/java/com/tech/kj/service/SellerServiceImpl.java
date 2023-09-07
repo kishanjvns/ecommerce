@@ -23,7 +23,7 @@ public class SellerServiceImpl implements SellerService{
         ContactEntity contact = new ContactEntity(sellerRegistrationDto.getContactNumber());
         seller.getContactNumber().add(contact);
         contact.setPrimary(true);
-        contact.setSeller(seller);
+        contact.setUser(seller);
         log.info("entity object after dto mapping {}",seller);
         return sellerRepo.save(seller);
     }

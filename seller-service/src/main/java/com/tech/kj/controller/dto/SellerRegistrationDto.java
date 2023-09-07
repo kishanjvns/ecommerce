@@ -1,7 +1,7 @@
 package com.tech.kj.controller.dto;
 
 import com.tech.kj.constants.ValidatorConstants;
-import com.tech.kj.custom.annotation.UniqueValue;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -14,6 +14,9 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @ToString
+@Schema(
+        description = "Seller Registration Request Model Information"
+)
 public class SellerRegistrationDto {
     @NotBlank(message = "{err.empty_string}")
     @Pattern(regexp = ValidatorConstants.REGX_NONSPACE_NONSPECIALCHARS)
