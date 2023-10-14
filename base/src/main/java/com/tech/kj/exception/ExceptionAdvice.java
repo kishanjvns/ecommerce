@@ -1,5 +1,6 @@
 package com.tech.kj.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.Optional;
 
 @ControllerAdvice
+@Slf4j
 public class ExceptionAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -39,5 +41,15 @@ public class ExceptionAdvice {
                     new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
         }
         return error;
+    }
+
+    @ExceptionHandler({ServiceNAException.class,RecordAleadyExistException.class})
+    @ResponseStatus(HttpStatus.GATEWAY_TIMEOUT)
+    @ResponseBody
+     GenericCustomErrorResponse  onRemoteCallFailed(BaseException serviceNAException){
+        log.info("handling exception response");
+
+        GenericCustomErrorResponse genericCustomErrorResponse = new GenericCustomErrorResponse(serviceNAException.getErrorCode(),serviceNAException.getErrorMessage(),serviceNAException.getTimestamp());
+        return genericCustomErrorResponse;
     }
 }

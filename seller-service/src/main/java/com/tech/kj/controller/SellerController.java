@@ -1,7 +1,7 @@
 package com.tech.kj.controller;
 
-import com.tech.kj.controller.dto.GenericResponseDto;
 import com.tech.kj.controller.dto.SellerRegistrationDto;
+import com.tech.kj.dto.GenericResponseDto;
 import com.tech.kj.entity.SellerEntity;
 import com.tech.kj.service.SellerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,7 +36,7 @@ public class SellerController {
     public ResponseEntity<GenericResponseDto<UUID>> registerUser(@Valid @RequestBody SellerRegistrationDto requestDto){
         SellerEntity entity = sellerService.register(requestDto);
         GenericResponseDto<UUID> responseDto= new GenericResponseDto<>();
-        responseDto.setMessage("Sucess");
+        responseDto.setMessage("Success");
         responseDto.setData(entity.getId());
         ResponseEntity<GenericResponseDto<UUID>> response = ResponseEntity.ok(responseDto);
         return response;

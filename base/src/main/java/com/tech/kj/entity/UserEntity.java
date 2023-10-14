@@ -14,9 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
-public class UserEntity extends BaseEntity {
-    private String firstName;
+public class UserEntity extends BaseUserEntity {
     private String lastName;
+    private String firstName;
 
     private String country;
 

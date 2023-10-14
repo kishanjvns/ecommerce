@@ -1,4 +1,4 @@
-package com.tech.kj.controller.dto;
+package com.tech.kj.dto;
 
 import lombok.*;
 
